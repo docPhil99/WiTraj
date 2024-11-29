@@ -8,6 +8,7 @@ function ret = process(dire, fname)
     rx = [r1 r2 r3];        % three RXs
 
     % read CSI data
+    fprintf('Opening %s\n',[dire,fname,'-1'])
     try
         [time1, pc1, ~] = m_getcsi([dire, fname, '-1']);
         [time2, pc2, ~] = m_getcsi([dire, fname, '-2']);

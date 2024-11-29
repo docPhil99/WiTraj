@@ -1,7 +1,7 @@
 
 
 % directory of CSI data file
-dire = '../WiTraj/data/diamond/';
+dire = '../data/diamond/';
 % file name to be processed
 fname = 'los4m_diamond_counterclockwise_t10';
 

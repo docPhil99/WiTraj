@@ -13,9 +13,9 @@ x = 1:length(r1);
 
 denominator = 0;
 
-r1avg=nanmean(nanmean(abs(r1)));
-r2avg=nanmean(nanmean(abs(r2)));
-r3avg=nanmean(nanmean(abs(r3)));
+r1avg=mean(mean(abs(r1),"omitnan"),"omitnan");
+r2avg=mean(mean(abs(r2),"omitnan"),"omitnan");
+r3avg=mean(mean(abs(r3),"omitnan"),"omitnan");
 level = [r1avg r2avg r3avg];
 
 if level(ant1) > level(ant2)
