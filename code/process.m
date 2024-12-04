@@ -1,7 +1,7 @@
 function ret = process(dire, fname)
     
     lambda = 3e8/5.24e9;
-    debug = false;
+    debug = true;
 
     load([dire, 'config.mat']);    
 
@@ -128,7 +128,8 @@ end
 
 
 function [pc1, pc2, pc3, time] = align_time3(time1, time2, time3, pc1, pc2, pc3)
-% align CSI data of three RXs
+% align CSI data of three RXs by making them all the same length as the
+% shortest vector.
 len = min([length(time1), length(time2), length(time3)]);
 time = time1(1:len);
 

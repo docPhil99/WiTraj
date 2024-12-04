@@ -4,16 +4,17 @@ function [dopplerspeed, score, agree, slope, duslope, mrange] = windowd_speed(cs
     wsize = floor(timeslot * samp_rate);
 
     window_size = window_size * samp_rate / 400;
+    %take the mean of all channels
     ncsi = mean(csiq, 2, 'omitnan');
     len = length(ncsi);
    
-    for i=1:3
+    for i=1:3   % smooth data with sgolayfilt to remove noise
         ncsi = m_denoise_w(ncsi, samp_rate/window_size);
     end
 
     skip = 2;  % for smoother doppler speed extraction
-    ns = [ncsi(1:skip,:); ncsi];
-    ne = [ncsi; ncsi(end - skip + 1:end, :)];
+    ns = [ncsi(1:skip,:); ncsi];    % add to start
+    ne = [ncsi; ncsi(end - skip + 1:end, :)]; %a dd to end
     csislope = ne - ns;     % get tangent on the circle
     csislope = csislope(skip+1:skip+len, :);    % restore the same amount of samples
     slope = angle(csislope);        % calculate phase of tangent

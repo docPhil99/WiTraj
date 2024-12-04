@@ -3,7 +3,7 @@ function [ret,denominator] = getAntMIMO(rx, ant1, ant2)
 %   Detailed explanation goes here
 
 
-%% avoid inf and nan
+% avoid inf and nan, replace with interpolated value
 r1 = m_removecomplexzero( rx{1, 1} );
 r2 = m_removecomplexzero( rx{1, 2} );
 r3 = m_removecomplexzero( rx{1, 3} );
@@ -12,7 +12,8 @@ r3 = m_removecomplexzero( rx{1, 3} );
 x = 1:length(r1);
 
 denominator = 0;
-
+% r1 is 5162x30 complex, CSI I assume. omitnan is problably not needed
+% since they were removed.
 r1avg=mean(mean(abs(r1),"omitnan"),"omitnan");
 r2avg=mean(mean(abs(r2),"omitnan"),"omitnan");
 r3avg=mean(mean(abs(r3),"omitnan"),"omitnan");
